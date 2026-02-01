@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>unfoch?</title>
+<style>
+    body {
+        background-color: pink;
+        font-family: Arial, sans-serif;
+        color: black;
+        text-align: center;
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+    #main {
+        transition: opacity 0.3s ease;
+    }
+
+    #buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        font-size: 22px;
+        padding: 10px 25px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+    }
+
+    #tak {
+        background-color: white;
+    }
+
+    #nie {
+        background-color: white;
+        position: absolute;
+    }
+
+    #lovkiScreen {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+    #lovkiScreen img {
+        max-width: 80%;
+        border-radius: 10px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="main">
+    <h1>unfoch?</h1>
+    <img src="https://tr.rbxcdn.com/0ef1f2c2b4ac2f6ed4de91291429afea/420/420/Hat/Png" width="300">
+    <div id="buttons">
+        <button id="tak">tak</button>
+        <button id="nie">nie</button>
+    </div>
+</div>
+
+<div id="lovkiScreen">
+    <h1>lovki</h1>
+    <img src="https://i.pinimg.com/736x/9c/89/60/9c89609b047c318479b4e21cf80d5c98.jpg">
+</div>
+
+<script>
+    const nie = document.getElementById("nie");
+    const tak = document.getElementById("tak");
+    const main = document.getElementById("main");
+    const lovki = document.getElementById("lovkiScreen");
+
+    // przycisk "nie" ucieka
+    document.addEventListener("mousemove", (e) => {
+        const rect = nie.getBoundingClientRect();
+        const distance = Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
+
+        if (distance < 120) {
+            nie.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            nie.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        }
+    });
+
+    // kliknięcie "tak"
+    tak.addEventListener("click", () => {
+        main.style.display = "none";
+        lovki.style.display = "flex";
+    });
+</script>
+
+</body>
+</html>
